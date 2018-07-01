@@ -1,0 +1,43 @@
+﻿@model IEnumerable<UploadCenterV2.Models.Comment>
+
+@{
+    ViewBag.Title = "View";
+}
+
+<h2>View</h2>
+
+<p>
+    @Html.ActionLink("Add Comment", "Add")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Text)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Username)
+        </th>
+        <th>
+            Controlls
+        </th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Text)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Username)
+        </td>
+        <td>
+            @if (Session["fullName"].ToString() == item.Username)
+            {
+                @Html.ActionLink("Edit", "Edit", new { id = item.Comment_ID })
+                @Html.ActionLink(" | Delete", "Delete", new { id = item.Comment_ID })
+            }
+        </td>
+    </tr>
+}
+
+</table>

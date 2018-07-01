@@ -1,0 +1,24 @@
+﻿@model UploadCenterV2.Models.Image
+
+@{
+    ViewBag.Title = "ImageViwer";
+    Session["image_ID"] = Model.Image_ID;
+}
+
+
+<div>
+    <div class="well" style="margin-top:25px;">
+        <div class="text-center"><h1>@Html.DisplayFor(model => model.Title)</h1></div>
+        <div class="thumbnail">
+            <img src="@Url.Content(Model.ImagePath)" class="img-responsive" />
+            <div class="caption">
+                <h4><strong>Description:</strong></h4>
+                <p>@Html.DisplayFor(model => model.Description)</p>
+            </div>
+        </div>
+    </div>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Image_ID }) |
+    <a href="~/comments/View/@Model.Image_ID">Comments</a>
+</p>

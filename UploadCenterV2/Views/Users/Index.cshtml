@@ -1,0 +1,48 @@
+﻿@model UploadCenterV2.Models.User
+
+@{
+    ViewBag.Title = "Login";
+}
+
+
+@using (Html.BeginForm("Authorize", "Users", FormMethod.Post))
+{
+    <div class="form-horizontal">
+        <h4>User Login</h4>
+        <hr />
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.username, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.username, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.username, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.password, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.password, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.password, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <label class="label-danger">@Html.DisplayFor(model => model.LoginErrorMessage)</label>
+            </div>
+            <div class="col-md-offset-2 col-md-1">
+                <input type="submit" value="Login" class="btn btn-primary" />
+            </div>
+            <div class="col-md-offset-1 col-md-8">
+                <input type="reset" value="Reset" class="btn btn-warning" />
+            </div>
+        </div>
+    </div>
+
+}
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+
+}

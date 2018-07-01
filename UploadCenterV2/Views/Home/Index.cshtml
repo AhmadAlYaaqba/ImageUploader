@@ -1,0 +1,22 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+
+@if (Session["userID"] == null)
+{
+    <div class="jumbotron" style="margin-top: 25px">
+        <h1>Welcome to RBK Image uploader</h1>
+        <p class="lead">to be able to use our application, please @Html.ActionLink("SignUp", "Create", "Users")</p>
+        <p class="lead">if you are already a member, @Html.ActionLink("SignIn", "Index", "Users")</p>
+    </div>
+}
+else
+{
+    <div class="jumbotron" style="margin-top: 25px">
+        <h1>Welcome Back, @Session["fullName"].ToString()</h1>
+        <p class="lead">You can go to your  @Html.ActionLink("Dashboard", "Dashboard", "Users")</p>
+        <p class="lead">Or you can dirctly go to , @Html.ActionLink("upload new image", "add", "Images")</p>
+    </div>
+}
+
+

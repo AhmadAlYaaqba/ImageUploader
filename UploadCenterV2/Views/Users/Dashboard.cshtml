@@ -1,0 +1,56 @@
+﻿@model IEnumerable<UploadCenterV2.Models.Image>
+
+@{
+    ViewBag.Title = "Dashboard";
+    if (Session["userID"] == null)
+    {
+        Response.Redirect("~/Users/Index");
+    }
+}
+
+<div class="jumbotron" style="margin-top: 25px">
+    @if (Session["fullName"] != null)
+    {
+        <h2> Welcome @Session["fullName"].ToString() in your Dashboard</h2>
+    }
+    <p>Here you can see all photos that you uploaded</p>
+</div>
+
+<p>
+    @Html.ActionLink("Upload New Image", "Add", "Images")
+</p>
+
+<div class="panel-group">
+    @foreach (var item in Model)
+    {
+    <div class="panel panel-primary">
+        <div class="panel-heading">@Html.DisplayFor(modelItem => item.Title)</div>
+        <div class="panel-body">
+            <div class="row">
+                <div class="col-sm-2">
+                    <img src="@Url.Content(item.ImagePath)" class="img-responsive img-thumbnail" />
+                </div>
+                <div class="col-sm-10">
+                    <dl>
+                        <dt>
+                            @Html.DisplayNameFor(model => model.Description)
+                        </dt>
+                        <dd>
+                            @Html.DisplayFor(modelItem => item.Description)
+                        </dd>
+                        <dt>
+                            Sharing Link
+                        </dt>
+                        <dd>
+                            <code>@Url.Content(item.ImagePath)</code>
+                        </dd>
+                    </dl>
+                </div>
+            </div>
+        </div>
+        <div class="panel-footer">
+            <a href="~/images/View/@item.Image_ID">View in Full Size</a>
+        </div>
+    </div>
+    }
+</div>
